@@ -86,6 +86,7 @@ def check_in():
         msg += [
             {"name": "签到信息", "value": "访问失败，可能遇到 Cloudflare challenge"},
         ]
+        return False
     else:
         msg += [
             {"name": "签到信息", "value": "未知错误"},
