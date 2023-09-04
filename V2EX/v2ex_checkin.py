@@ -115,7 +115,7 @@ def main():
     if success:
         query_balance()
     global msg
-    return "\n".join([f"{one.get('name')}: {one.get('value')}" for one in msg])
+    return "\n".join([f"{one.get('name')}：{one.get('value')}" for one in msg])
 
 
 if __name__ == '__main__':

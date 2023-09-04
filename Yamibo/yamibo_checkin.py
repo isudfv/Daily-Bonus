@@ -18,14 +18,27 @@ COOKIES = {
 
 # headers
 HEADERS = {
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
     "Accept-Encoding": "gzip, deflate, br",
-    "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,ja;q=0.7,zh-TW;q=0.6",
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+    "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,ja;q=0.7,zh-TW;q=0.6,da;q=0.5",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36",
+    "sec-ch-ua": '"Chromium";v="92", " Not A;Brand";v="99", "Google Chrome";v="92"',
+    "sec-ch-ua-mobile": "?0",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "same-origin",
+    "Sec-Fetch-User": "?1",
+    "Upgrade-Insecure-Requests": "1",
+    "Connection": "keep-alive",
+    "Host": "bbs.yamibo.com",
 }
 
 # session
 SESSION = requests.Session()
+# SESSION.proxies = {
+#     'http': 'socks5://127.0.0.1:7890',
+#     'https': 'socks5://127.0.0.1:7890'
+# }
 
 # Bypass Cloudflare
 scraper = cloudscraper.create_scraper(sess=SESSION)
@@ -44,8 +57,6 @@ def fhash():
         hash = tree.xpath('//input[@name="formhash"]')[0].attrib['value']
         return hash
     except Exception as e:
-        print("no form hash")
-        print(r.headers)
         return ""
 
 
@@ -71,6 +82,10 @@ def check_in():
             {"name": "签到信息", "value": "登录失败，Cookie 可能已经失效"},
         ]
         return False
+    elif "跳转中" in r.text:
+        msg += [
+            {"name": "签到信息", "value": "访问失败，可能遇到 Cloudflare challenge"},
+        ]
     else:
         msg += [
             {"name": "签到信息", "value": "未知错误"},
@@ -104,7 +119,7 @@ def main():
     if check_in():
         query_credit()
     global msg
-    return "\n".join([f"{one.get('name')}: {one.get('value')}" for one in msg])
+    return "\n".join([f"{one.get('name')}：{one.get('value')}" for one in msg])
 
 
 if __name__ == '__main__':
