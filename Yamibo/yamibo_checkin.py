@@ -92,7 +92,7 @@ def check_in():
             {"name": "签到信息", "value": "未知错误"},
         ]
         print(r.headers)
-        r.encoding = r.apparent_encoding;
+        r.encoding = 'utf-8';
         print(r.text)
         return False
     return True
