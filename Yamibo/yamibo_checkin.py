@@ -90,6 +90,8 @@ def check_in():
     else:
         msg += [
             {"name": "签到信息", "value": "未知错误"},
+            {"name": "header", "value": r.headers},
+            {"name": "text", "value": r.text},
         ]
         return False
     return True
