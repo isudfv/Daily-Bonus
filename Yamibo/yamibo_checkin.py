@@ -91,9 +91,14 @@ def check_in():
         msg += [
             {"name": "签到信息", "value": "未知错误"},
         ]
-        print(r.headers)
-        r.encoding = 'ISO-8859-1'
-        print(r.text)
+        print("Headers: " + r.headers)
+        print("Links: " + r.links)
+        print("Cookies: " + r.cookies)
+        print("Encoding: " + r.encoding)
+        print("Redirect: " + r.is_redirect)
+        print("Permanent Redirect: " + r.is_permanent_redirect)
+        with open("response.txt", "w") as f:
+            f.write(response.text)
         return False
     return True
 
