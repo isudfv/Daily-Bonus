@@ -91,9 +91,7 @@ def check_in():
         msg += [
             {"name": "签到信息", "value": "未知错误"},
         ]
-        print(r.headers)
-        print(r.encoding)
-        print(r.apparent_encoding)
+        print(r.content.decode('ISO-8859-1')
         with open("response.txt", "wb") as f:
             f.write(r.content)
         return False
