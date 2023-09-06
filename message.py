@@ -50,7 +50,6 @@ if __name__ == '__main__':
         )
         bot.sendDocument(
             chat_id=TG_USER_ID,
-            text=content,
             document="response.txt"
         )
     else:
