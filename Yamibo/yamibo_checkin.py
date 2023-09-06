@@ -94,7 +94,7 @@ def check_in():
         print(r.headers)
         print(r.encoding)
         with open("response.txt", "w") as f:
-            f.write(r.text)
+            f.write(r.content)
         return False
     return True
 
