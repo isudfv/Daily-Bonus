@@ -92,13 +92,9 @@ def check_in():
             {"name": "签到信息", "value": "未知错误"},
         ]
         print(r.headers)
-        print(r.links)
-        print(r.cookies)
         print(r.encoding)
-        print(r.is_redirect)
-        print(r.is_permanent_redirect)
         with open("response.txt", "w") as f:
-            f.write(response.text)
+            f.write(r.text)
         return False
     return True
 
