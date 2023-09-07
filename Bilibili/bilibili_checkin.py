@@ -9,11 +9,12 @@ import uuid
 import requests
 
 # cookies
-COOKIES = {
-    "bili_jct": os.environ.get("BILIBILI_BILI_JCT"),
-    "DedeUserID": os.environ.get("BILIBILI_DEDEUSERID"),
-    "SESSDATA": os.environ.get("BILIBILI_SESSDATA"),
-}
+# COOKIES = {
+#     "bili_jct": os.environ.get("BILIBILI_BILI_JCT"),
+#     "DedeUserID": os.environ.get("BILIBILI_DEDEUSERID"),
+#     "SESSDATA": os.environ.get("BILIBILI_SESSDATA"),
+# }
+COOKIES = os.environ.get("BILIBILI_COOKIES")
 SESSION = requests.Session()
 msg = []
 
@@ -83,7 +84,7 @@ def check_in():
 
 
 def main():
-    COOKIES["buvid3"] = str(uuid.uuid1())
+    # COOKIES["buvid3"] = str(uuid.uuid1())
     SESSION.headers.update(HEADERS)
     SESSION.cookies.update(COOKIES)
     if login():
