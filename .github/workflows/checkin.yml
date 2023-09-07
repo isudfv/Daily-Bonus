@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      BILIBILI_COOKIES: ${{ secrets.BILIBILI_COOKIES }}
       BILIBILI_BILI_JCT: ${{ secrets.BILIBILI_BILI_JCT }}
       BILIBILI_DEDEUSERID: ${{ secrets.BILIBILI_DEDEUSERID }}
       BILIBILI_SESSDATA: ${{ secrets.BILIBILI_SESSDATA }}
