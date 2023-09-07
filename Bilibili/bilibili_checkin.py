@@ -23,6 +23,7 @@ HEADERS = {
     "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8,ja;q=0.7,zh-TW;q=0.6,da;q=0.5",
     "Referer": "https://www.bilibili.com/",
     "Connection": "keep-alive",
+    "Cookie": COOKIES,
 }
 
 
@@ -86,7 +87,7 @@ def check_in():
 def main():
     # COOKIES["buvid3"] = str(uuid.uuid1())
     SESSION.headers.update(HEADERS)
-    SESSION.cookies.update(COOKIES)
+    # SESSION.cookies.update(COOKIES)
     if login():
         check_in()
     global msg
