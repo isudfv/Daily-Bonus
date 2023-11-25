@@ -47,6 +47,6 @@ jobs:
         run: python ./message.py
         if: always()
       - name: Sockboom Check-in
-        run: /
+        run: 
           curl https://api.sockboom.click/client/checkin?token=$SOCKBOOM_TOKEN
         if: always()
