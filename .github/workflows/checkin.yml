@@ -26,6 +26,7 @@ jobs:
       PICA_PASSWORD: ${{ secrets.PICA_PASSWORD }}
       TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
       TG_USER_ID: ${{ secrets.TG_USER_ID }}
+      SOCKBOOM_TOKEN: ${{ secrets.SOCKBOOM_TOKEN }}
 
     steps:
       - uses: actions/checkout@v3
@@ -44,4 +45,8 @@ jobs:
           pip install -r requirements.txt
       - name: Check-in
         run: python ./message.py
+        if: always()
+      - name: Sockboom Check-in
+        run: /
+          curl https://api.sockboom.click/client/checkin?token=$SOCKBOOM_TOKEN
         if: always()
