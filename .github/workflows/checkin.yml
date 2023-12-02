@@ -6,6 +6,7 @@ on:
       - master
   schedule:
     - cron: '30 23 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -27,6 +28,8 @@ jobs:
       TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
       TG_USER_ID: ${{ secrets.TG_USER_ID }}
       SOCKBOOM_TOKEN: ${{ secrets.SOCKBOOM_TOKEN }}
+      NOTIFICATION_TOAST_URL: ${{ secrets.NOTIFICATION_TOAST_URL }}
+      NOTIFICATION_TOKEN: ${{ secrets.NOTIFICATION_TOKEN }}
 
     steps:
       - uses: actions/checkout@v3

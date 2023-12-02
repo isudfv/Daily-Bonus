@@ -112,6 +112,18 @@ def main():
     SESSION.headers.update(HEADERS)
     if check_in():
         query_credit()
+    else:
+        r = SESSION.post(
+            url=os.environ.get("NOTIFICATION_TOAST_URL"), 
+            data={
+                "subject": "百合会签到失败",
+                "icon": "https://www.yamibo.com/favicon.ico"
+            },
+            headers={
+                "Authentication-Token": os.environ.get("NOTIFICATION_TOKEN")
+            }
+        )
+        print(r)
     global msg
     return "\n".join([f"{one.get('name')}: {one.get('value')}" for one in msg])
 
